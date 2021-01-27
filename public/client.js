@@ -57,9 +57,9 @@ document.getElementById("WebGL-output").appendChild(renderer.domElement);
 var loader = new THREE.TextureLoader();
 
 // Set up the sphere attributes
-const RADIUS = 200;
-const SEGMENTS = 50;
-const RINGS = 50;
+const RADIUS = 120;
+const SEGMENTS = 80;
+const RINGS = 80;
 
 //Create a group (which will later include our sphere and its texture meshed together)
 const globe = new THREE.Group();
@@ -84,7 +84,7 @@ loader.load( 'earth.jpg', function ( texture ) {
 } );
 
 // Move the sphere back (z) so we can see it.
-globe.position.z = -300;
+globe.position.z = -1;
 
 const orbitControls = new OrbitControls(camera, renderer.domElement);
 orbitControls.autoRotate = false;
@@ -104,15 +104,15 @@ function animate () {
 
 requestAnimationFrame(animate);
 
-var lastMove = [window.innerWidth/2, window.innerHeight/2];
+var lastMove = [window.innerWidth/10, window.innerHeight/10];
 function rotateOnMouseMove(e) {
     e = e || window.event;
     //calculate difference between current and last mouse position
     const moveX = ( e.clientX - lastMove[0]);
     const moveY = ( e.clientY - lastMove[1]);
     //rotate the globe based on distance of mouse moves (x and y)
-    globe.rotation.y += ( moveX * .005);
-    globe.rotation.x += ( moveY * .005);
+    globe.rotation.y += ( moveX * .0001);
+    globe.rotation.x += ( moveY * .0001);
     //store new position in lastMove
     lastMove[0] = e.clientX;
     lastMove[1] = e.clientY;
